@@ -34,7 +34,7 @@ class RememberMeTokensTableTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
         $this->RememberMeTokens = TableRegistry::get('RememberMeTokens', ['className' => RememberMeTokensTable::class]);
@@ -45,7 +45,7 @@ class RememberMeTokensTableTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown() : void
     {
         unset($this->RememberMeTokens);
 

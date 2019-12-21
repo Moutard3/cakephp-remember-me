@@ -35,7 +35,8 @@ if (file_exists($root . '/config/bootstrap.php')) {
         error_reporting(E_ALL ^ E_USER_DEPRECATED);
     }
 
-    Plugin::load('RememberMe', ['path' => dirname(dirname(__FILE__)) . DS]);
+    Plugin::getCollection()->add(new \RememberMe\Plugin(['path' => dirname(dirname(__FILE__)) . DS]));
+    Plugin::getCollection()->add(new \Authentication\Plugin(['path' => dirname(dirname(__FILE__)) . DS]));
 
     error_reporting(E_ALL);
 }

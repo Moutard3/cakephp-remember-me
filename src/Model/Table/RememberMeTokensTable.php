@@ -32,10 +32,9 @@ class RememberMeTokensTable extends Table implements RememberMeTokensTableInterf
      * @param array $config The configuration for the Table.
      * @return void
      */
-    public function initialize(array $config)
+    public function initialize(array $config) : void
     {
         parent::initialize($config);
-
         $this->setTable('remember_me_tokens');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
@@ -49,32 +48,32 @@ class RememberMeTokensTable extends Table implements RememberMeTokensTableInterf
      * @param Validator $validator Validator instance.
      * @return Validator
      */
-    public function validationDefault(Validator $validator)
+    public function validationDefault(Validator $validator) : Validator
     {
         $validator
             ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->allowEmptyString('id', 'create');
 
         $validator
             ->requirePresence('model', 'create')
-            ->notEmpty('model');
+            ->notEmptyString('model');
 
         $validator
             ->requirePresence('foreign_id', 'create')
-            ->notEmpty('foreign_id');
+            ->notEmptyString('foreign_id');
 
         $validator
             ->requirePresence('series', 'create')
-            ->notEmpty('series');
+            ->notEmptyString('series');
 
         $validator
             ->requirePresence('token', 'create')
-            ->notEmpty('token');
+            ->notEmptyString('token');
 
         $validator
             ->dateTime('expires')
             ->requirePresence('expires', 'create')
-            ->notEmpty('expires');
+            ->notEmptyString('expires');
 
         return $validator;
     }
@@ -86,7 +85,7 @@ class RememberMeTokensTable extends Table implements RememberMeTokensTableInterf
      * @param RulesChecker $rules The rules object to be modified.
      * @return RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
+    public function buildRules(RulesChecker $rules) : RulesChecker
     {
         $rules->add($rules->isUnique(['model', 'foreign_id', 'series']));
 

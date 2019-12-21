@@ -4,7 +4,7 @@ namespace RememberMe\Auth;
 
 use Cake\Auth\BaseAuthenticate;
 use Cake\Controller\ComponentRegistry;
-use Cake\Controller\Component\AuthComponent;
+use \Authentication\Controller\Component\AuthenticationComponent;
 use Cake\Datasource\EntityInterface;
 use Cake\Datasource\ModelAwareTrait;
 use Cake\Datasource\RepositoryInterface;
@@ -354,7 +354,7 @@ class CookieAuthenticate extends BaseAuthenticate
     /**
      * @return array
      */
-    public function implementedEvents()
+    public function implementedEvents() : array
     {
         return [
             'Auth.afterIdentify' => 'onAfterIdentify',
@@ -372,13 +372,13 @@ class CookieAuthenticate extends BaseAuthenticate
     public function onAfterIdentify(Event $event, array $user)
     {
         $authComponent = $event->getSubject();
-        /* @var $authComponent AuthComponent */
+        /* @var $authComponent AuthenticationComponent */
 
         if (!$user) {
             // when authenticate failed, clear cookie token.
             $authComponent->response = $this->setCookie($authComponent->response, '');
 
-            return null;
+            return [];
         }
 
         if ($this->getConfig('dropExpiredToken')) {
@@ -401,7 +401,7 @@ class CookieAuthenticate extends BaseAuthenticate
             }
         }
 
-        return null;
+        return [];
     }
 
     /**

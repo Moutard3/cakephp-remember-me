@@ -25,5 +25,6 @@ return array(
     'Cake\\Test\\' => array($vendorDir . '/cakephp/cakephp/tests'),
     'Cake\\Chronos\\' => array($vendorDir . '/cakephp/chronos/src'),
     'Cake\\' => array($vendorDir . '/cakephp/cakephp/src'),
+    'Authentication\\' => array($vendorDir . '/cakephp/authentication/src'),
     'Aura\\Intl\\' => array($vendorDir . '/aura/intl/src'),
 );

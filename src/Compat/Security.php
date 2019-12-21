@@ -18,7 +18,7 @@ class Security extends CoreSecurity
      * @return string The currently configured salt
      * @see Cake\Utility\Security::getSalt()
      */
-    public static function getSalt()
+    public static function getSalt() : string
     {
         if (method_exists(CoreSecurity::class, 'getSalt')) {
             return parent::getSalt();
@@ -34,12 +34,10 @@ class Security extends CoreSecurity
      * @return string The currently configured salt
      * @see Cake\Utility\Security::setSalt()
      */
-    public static function setSalt($salt)
+    public static function setSalt($salt) : void
     {
-        if (method_exists(CoreSecurity::class, 'getSalt')) {
-            return parent::setSalt($salt);
+        if (method_exists(CoreSecurity::class, 'setSalt')) {
+            parent::setSalt($salt);
         }
-
-        return parent::salt($salt);
     }
 }
